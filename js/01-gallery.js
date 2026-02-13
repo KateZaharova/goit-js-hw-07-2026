@@ -1,7 +1,5 @@
 import { galleryItems } from "/js/gallery-items.js";
 
-console.log(galleryItems);
-
 const refs = {
     gallery: document.querySelector(".gallery"),
 };
@@ -30,7 +28,6 @@ function onGalleryItemClick(event) {
     const galleryImage = event.target.classList.contains("gallery__image")
 
     if (galleryImage) {
-        console.log(event.target.dataset.source);
         instance.element().querySelector("img").src = event.target.dataset.source;
         instance.show();
 
@@ -41,10 +38,10 @@ function onGalleryItemClick(event) {
 const instance = basicLightbox.create(`<img/>`,
     {
         onShow: (instance) => {
-            window.addEventListener("keydown", onEscKeyPress);
+            document.addEventListener("keydown", onEscKeyPress);
         },
         onClose: (instance) => {
-            window.removeEventListener("keydown", onEscKeyPress);
+            document.removeEventListener("keydown", onEscKeyPress);
         },
     }
 );
